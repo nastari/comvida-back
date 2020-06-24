@@ -11,7 +11,7 @@ async function store(req, res) {
         {
           model: Files,
           as: 'avatar',
-          attributes: ['fileName', 'originalName', 'url'],
+          attributes: ['key', 'originalName', 'url'],
         },
       ],
     });
@@ -25,7 +25,7 @@ async function store(req, res) {
       {
         model: Files,
         as: 'avatar',
-        attributes: ['fileName', 'originalName', 'url'],
+        attributes: ['key', 'originalName', 'url'],
       },
     ],
   });

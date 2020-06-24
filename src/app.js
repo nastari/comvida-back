@@ -3,6 +3,8 @@ import path from 'path';
 import cors from 'cors';
 import routes from './routes';
 
+require('dotenv').config();
+
 class App {
   constructor() {
     this.server = express();

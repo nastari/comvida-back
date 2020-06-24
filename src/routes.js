@@ -17,7 +17,7 @@ routes.get('/users', UserController.index);
 routes.put('/user', authMiddle, UserController.update);
 routes.delete('/user', authMiddle, UserController.deleteUser);
 
-routes.get('/files', authMiddle, uploadPhoto.single('file'), PhotoController);
+routes.post('/files', authMiddle, uploadPhoto.single('file'), PhotoController);
 routes.post('/session', SessionController.store);
 routes.post('/forgot', SessionController.forgot);
 routes.post('/reset/:id', SessionController.reset);

@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
-import { Users, forgotPassword } from '../models';
+import { Users, Files, forgotPassword } from '../models';
 import emailResetPassword from '../lib/Mail/resetPassword';
 
 const jwt = require('jsonwebtoken');
@@ -18,7 +18,16 @@ export const store = async (req, res) => {
 
   const { email, password } = req.body;
 
-  const user = await Users.findOne({ where: { email } });
+  const user = await Users.findOne({
+    where: { email },
+    include: [
+      {
+        model: Files,
+        as: 'avatar',
+        attributes: ['key', 'originalName', 'url'],
+      },
+    ],
+  });
 
   if (!user) {
     return res.status(401).json({ message: 'User not found.' });

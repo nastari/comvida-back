@@ -3,13 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     'Files',
     {
       originalName: DataTypes.STRING,
-      fileName: DataTypes.STRING,
-      url: {
-        type: DataTypes.VIRTUAL,
-        get() {
-          return `http://localhost:6666/files/${this.fileName}`;
-        },
-      },
+      key: DataTypes.STRING,
+      url: DataTypes.STRING,
     },
     {}
   );

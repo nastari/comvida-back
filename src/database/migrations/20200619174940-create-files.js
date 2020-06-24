@@ -11,8 +11,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      fileName: {
+      key: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      url: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

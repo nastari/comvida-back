@@ -60,7 +60,17 @@ export const update = async (req, res) => {
 
   await user.update(req.body);
   const changedUser = await Users.findByPk(req.userId);
-  return res.json(changedUser);
+  const userR = await Users.findOne({
+    where: { email: changedUser.email },
+    include: [
+      {
+        model: Files,
+        as: 'avatar',
+        attributes: ['key', 'originalName', 'url'],
+      },
+    ],
+  });
+  return res.json(userR);
 };
 
 export const deleteUser = async (req, res) => {
@@ -86,7 +96,7 @@ export const index = async (req, res) => {
         {
           model: Files,
           as: 'avatar',
-          attributes: ['fileName', 'originalName', 'url'],
+          attributes: ['key', 'originalName', 'url'],
         },
       ],
     });
@@ -103,7 +113,7 @@ export const index = async (req, res) => {
         {
           model: Files,
           as: 'avatar',
-          attributes: ['fileName', 'originalName', 'url'],
+          attributes: ['key', 'originalName', 'url'],
         },
       ],
     });
@@ -121,7 +131,7 @@ export const index = async (req, res) => {
         {
           model: Files,
           as: 'avatar',
-          attributes: ['fileName', 'originalName', 'url'],
+          attributes: ['key', 'originalName', 'url'],
         },
       ],
     });
@@ -138,7 +148,7 @@ export const index = async (req, res) => {
       {
         model: Files,
         as: 'avatar',
-        attributes: ['fileName', 'originalName', 'url'],
+        attributes: ['key', 'originalName', 'url'],
       },
     ],
   });
@@ -155,7 +165,7 @@ export const index = async (req, res) => {
 //       {
 //         model: Files,
 //         as: 'avatar',
-//         attributes: ['fileName', 'originalName', 'url'],
+//         attributes: ['key', 'originalName', 'url'],
 //       },
 //     ],
 //   }).then((user) => {

@@ -2,11 +2,15 @@ import { Users, Files } from '../models';
 
 const store = async (req, res) => {
   const user_id = req.userId;
-  const { originalname: originalName, filename: fileName } = req.file;
+  const { originalname: originalName, key, location: url = '' } = req.file;
 
   const user = await Users.findByPk(user_id);
 
-  const file = await Files.create({ originalName, fileName });
+  const file = await Files.create({
+    originalName,
+    key,
+    url,
+  });
 
   await user.update({ avatar_id: file.id });
 
