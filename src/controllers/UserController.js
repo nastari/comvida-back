@@ -72,7 +72,7 @@ export const deleteUser = async (req, res) => {
 };
 
 export const index = async (req, res) => {
-  const { page = 1, city, uf } = req.query;
+  const { page, city, uf } = req.query;
   const limite = 6;
   const offset = (page - 1) * limite;
 
@@ -146,22 +146,22 @@ export const index = async (req, res) => {
   return res.json(users);
 };
 
-export const getOne = async (req, res) => {
-  const { id } = req.params;
+// export const getOne = async (req, res) => {
+//   const { id } = req.params;
 
-  await Users.findOne({
-    where: { id },
-    include: [
-      {
-        model: Files,
-        as: 'avatar',
-        attributes: ['fileName', 'originalName', 'url'],
-      },
-    ],
-  }).then((user) => {
-    if (user.length === 0) {
-      return res.status(400).send('User not found.');
-    }
-    return res.status(200).json(user);
-  });
-};
+//   await Users.findOne({
+//     where: { id },
+//     include: [
+//       {
+//         model: Files,
+//         as: 'avatar',
+//         attributes: ['fileName', 'originalName', 'url'],
+//       },
+//     ],
+//   }).then((user) => {
+//     if (user.length === 0) {
+//       return res.status(400).send('User not found.');
+//     }
+//     return res.status(200).json(user);
+//   });
+// };
