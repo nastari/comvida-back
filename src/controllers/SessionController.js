@@ -59,15 +59,30 @@ export const forgot = async (req, res) => {
   const { email } = req.body;
 
   const user = await Users.findOne({ where: { email } });
-  console.log(user);
+
   if (!user) {
     return res.status(401).json({ message: 'User not found.' });
   }
   const id = uuidv4();
+
   const request = {
     id,
     email,
   };
+
+  const lastQuery = await forgotPassword.findOne({
+    where: { email },
+    limit: 1,
+    order: [['createdAt', 'DESC']],
+  });
+
+  const now = new Date().getTime();
+
+  if (lastQuery && now < lastQuery.createdAt.getTime() + 180000) {
+    return res
+      .status(401)
+      .json({ message: 'Wait 3 minutes to resend password recovery email' });
+  }
 
   const queryPasswordForgot = await forgotPassword.create(request);
 
@@ -98,6 +113,8 @@ export const reset = async (req, res) => {
   }
 
   await user.update({ password });
+
+  await forgotPassword.destroy({ where: { id } });
 
   return res.json({ message: 'Password change.' });
 };
