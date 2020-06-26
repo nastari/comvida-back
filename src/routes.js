@@ -13,7 +13,6 @@ const uploadPhoto = multer(multerConfig);
 
 routes.post('/user', UserController.store);
 routes.get('/users', UserController.index);
-// routes.get('/user/:id', UserController.getOne);
 routes.put('/user', authMiddle, UserController.update);
 routes.delete('/user', authMiddle, UserController.deleteUser);
 

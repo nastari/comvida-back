@@ -155,23 +155,3 @@ export const index = async (req, res) => {
 
   return res.json(users);
 };
-
-// export const getOne = async (req, res) => {
-//   const { id } = req.params;
-
-//   await Users.findOne({
-//     where: { id },
-//     include: [
-//       {
-//         model: Files,
-//         as: 'avatar',
-//         attributes: ['key', 'originalName', 'url'],
-//       },
-//     ],
-//   }).then((user) => {
-//     if (user.length === 0) {
-//       return res.status(400).send('User not found.');
-//     }
-//     return res.status(200).json(user);
-//   });
-// };
