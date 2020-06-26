@@ -92,22 +92,21 @@ export const forgot = async (req, res) => {
 };
 
 export const reset = async (req, res) => {
-  const schema = Yup.object().shape({
-    password: Yup.string().min(6).required(),
-  });
+  const { password } = req.body;
+  const passwordSchema = Yup.string().min(6).required();
 
-  if (!(await schema.isValid(req.body))) {
+  if (!(await passwordSchema.isValid(password))) {
     return res.status(401).json('Validation fails');
   }
+
   const { id } = req.params;
-  const { password } = req.body;
   if (!id) {
     return res.status(401).json('Acess denied.');
   }
   const acess = await forgotPassword.findByPk(id);
-
-  const user = await Users.findOne({ where: { email: acess.email } });
-
+  const user = await Users.findOne({
+    where: { email: acess.dataValues.email },
+  });
   if (!user) {
     return res.status(401).json({ message: 'Something wrong happens' });
   }
@@ -116,5 +115,5 @@ export const reset = async (req, res) => {
 
   await forgotPassword.destroy({ where: { id } });
 
-  return res.json({ message: 'Password change.' });
+  return res.status(200).json({ message: 'Password change.' });
 };
