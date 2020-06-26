@@ -11,6 +11,7 @@ const routes = new Router();
 
 const uploadPhoto = multer(multerConfig);
 
+routes.post('/', (req, res) => res.send('ok'));
 routes.post('/user', UserController.store);
 routes.get('/users', UserController.index);
 routes.put('/user', authMiddle, UserController.update);
