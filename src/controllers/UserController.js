@@ -27,7 +27,6 @@ export const store = async (req, res) => {
   const newUser = await Users.create({ name, email, password, online: false });
 
   return res.json(newUser);
-  // return res.status(200).json({ name, email, id });
 };
 
 export const update = async (req, res) => {
