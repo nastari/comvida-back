@@ -1,12 +1,12 @@
 {
-  "name": "binaryport",
+  "name": "comvida",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "nodemon ./src/server.js",
-    "start": "node --experimental-modules -r esm ./src/server.js",
+    "start": "node --experimental-modules ./src/server.mjs",
     "dev:debug": "nodemon --inspect ./src/server.js"
   },
   "dependencies": {
