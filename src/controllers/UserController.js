@@ -56,7 +56,7 @@ export const update = async (req, res) => {
       }
     });
   }
-
+  console.log(req.body);
   await user.update(req.body);
   const changedUser = await Users.findByPk(req.userId);
   const userR = await Users.findOne({

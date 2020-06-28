@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 import { Users, Files, forgotPassword } from '../models';
 import emailResetPassword from '../lib/Mail/resetPassword';
-import authConfig from '../config/auth';
+import { auth } from '../config/auth';
 
 const jwt = require('jsonwebtoken');
 
@@ -41,8 +41,8 @@ export const store = async (req, res) => {
     const { id } = user;
     return res.status(200).json({
       user,
-      token: jwt.sign({ id }, authConfig.secret, {
-        expiresIn: authConfig.expiresIn,
+      token: jwt.sign({ id }, auth.secret, {
+        expiresIn: auth.expiresIn,
       }),
     });
   });
