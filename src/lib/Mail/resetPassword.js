@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import awsConfig from '../../config/mail';
+import awsConfig from '../../config/mail.js';
 
 export default function resetPassword(email, name, id) {
   AWS.config.update({
