@@ -1,6 +1,6 @@
-require('dotenv').config();
-
-export default {
-  secret: process.env.SECRET,
+const auth = {
+  secret: 'abcdef',
   expiresIn: '7d',
 };
+
+export default auth;
