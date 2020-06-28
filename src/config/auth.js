@@ -1,5 +1,5 @@
 const auth = {
-  secret: 'abcdef',
+  secret: process.env.SECRET,
   expiresIn: '7d',
 };
 
