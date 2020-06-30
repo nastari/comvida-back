@@ -4,11 +4,10 @@
   </a>
 </p>
 
-<h1 align="center">Com Vida</h1>
-
 <div align="center">
 
-A platform for publicizing emergency cases against Covid-19 in Brazil
+
+A platform to publicize emergency cases at the time Covid-19 in Brazil
 
 </div>
 
