@@ -35,7 +35,7 @@ class App {
         'DELETE',
         'OPTIONS',
       ]);
-      this.server.use(cors());
+      this.server.use(cors({ origin: 'www.comvida.online' }));
       next();
     });
   }
