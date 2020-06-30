@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.comvida.online">
-    <img width="200" src="https://drive.google.com/file/d/1Hov9LeEk3mgUclHN97VfZhfO6ikbkCLq/view?usp=sharing">
+    <img width="200" src="https://users-comvida.s3.amazonaws.com/ComVida+(1).svg">
   </a>
 </p>
 
